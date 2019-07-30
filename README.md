@@ -3,8 +3,7 @@
 
 ## Built From:
 <!-- ![Selenium](https://www.seleniumhq.org/images/big-logo.png "Selenium") -->
-<img src="https://www.seleniumhq.org/images/big-logo.png" width="150" height="150">
-<img src="https://www.python.org/static/opengraph-icon-200x200.png" width="150" height="150">
+<img src="https://www.seleniumhq.org/images/big-logo.png" width="150" height="150"><img src="https://www.python.org/static/opengraph-icon-200x200.png" width="150" height="150">
 <!-- ![Python](https://www.python.org/static/opengraph-icon-200x200.png  "Python") -->
 
 ## Required Installations
