@@ -21,36 +21,17 @@ int main(int argc, char *argv[])
         while ((input != 6)) //continous loop to continue editting
         {
             //should probably clean this formatting up a bit
-            printf("\n\n1. view\n2. add\n3. delete\n4. new list\n5. delete list\n6. exit\n");
+            printf("\n\n1. view\n2. add\n3. delete\n4. change\n5. new list\n6. delete list\n7. exit\n");
             scanf("%d", &input);
 
             switch (input)
             {
-                // case '\0':
-                //     fprintf(stderr, "reading the null byte");
-                //     break;
-
             case 1:
-                if ((fp = fopen("reminders.txt", "r")) == NULL)
-                {
-                    fprintf(stderr, "Cannot open file\n");
-                    //need any termination? break? exit? return?
-                }
-                else
-                {
-                    printf("\n=========================\n");
-                    char c;
-                    while ((c = getc(fp)) != EOF)
-                    {
-                        putchar(c);
-                    }
-                    fclose(fp);
-                    printf("\n=========================\n");
-                }
+                print_list(fp);
                 break;
 
             case 2:
-                //TODO
+                add_to_list(fp);
                 break;
 
             case 3:
@@ -66,6 +47,10 @@ int main(int argc, char *argv[])
                 break;
 
             case 6:
+                //TODO
+                break;
+
+            case 7:
                 return 0; //still unsure about terminations
                 break;
 
