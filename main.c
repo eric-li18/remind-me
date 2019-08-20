@@ -5,6 +5,9 @@
 
 int main(int argc, char *argv[])
 {
+    //argv[1] - ?
+    //argv[2] - ?
+
     if (argc != 2)
     {
         fprintf(stderr, "use argument: edit, ..? \n");
@@ -18,11 +21,12 @@ int main(int argc, char *argv[])
         int input;
 
         FILE *fp;
-        while ((input != 6)) //continous loop to continue editting
+        while ((input != 7)) //continous loop to continue editting
         {
             //should probably clean this formatting up a bit
-            printf("\n\n1. view\n2. add\n3. delete\n4. change\n5. new list\n6. delete list\n7. exit\n");
+            printf("\n\n\t1. view\n\t2. add\n\t3. delete\n\t4. change\n\t5. new list\n\t6. delete list\n\t7. exit\n");
             scanf("%d", &input);
+            getchar();
 
             switch (input)
             {
