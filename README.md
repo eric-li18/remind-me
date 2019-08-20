@@ -1,14 +1,14 @@
-# RemindMe
+# RemindMe (WIP)
 
 
-## Built From:
-<!-- ![Selenium](https://www.seleniumhq.org/images/big-logo.png "Selenium") -->
+<!-- ## Built From:
+![Selenium](https://www.seleniumhq.org/images/big-logo.png "Selenium")
 <img src="https://www.seleniumhq.org/images/big-logo.png" width="150" height="150"><img src="https://www.python.org/static/opengraph-icon-200x200.png" width="150" height="150"><img src="https://www.macworld.co.uk/cmsdata/features/3608274/Terminalicon2_thumb800.png" width="250" height="150">
-<!-- ![Python](https://www.python.org/static/opengraph-icon-200x200.png  "Python") -->
+![Python](https://www.python.org/static/opengraph-icon-200x200.png  "Python") -->
 
 ## Workflow Plan
 
-<img src="./remind-me workflow .png">
+<img src="./other/remind-me workflow .png">
 
 ## Required Installations
 ### Shell Script

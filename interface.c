@@ -7,7 +7,6 @@ void print_list(FILE *fp)
     if ((fp = fopen("reminders.txt", "r")) == NULL)
     {
         fprintf(stderr, "Cannot open list\n");
-        //need any termination? break? exit? return?
     }
     else
     {
@@ -33,7 +32,6 @@ void add_to_list(FILE *fp)
         char name[100];
         char date[12];
         char time[9];
-        getchar();
 
         printf("Enter assignment name:");
         fgets(name, 100, stdin);

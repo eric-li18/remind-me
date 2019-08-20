@@ -5,7 +5,7 @@ clean :
 		rm -f *.o main 
 
 main : main.o interface.o submit.o 
-		gcc $^ -o $<
+		gcc $^ -o $@
 
 main.o : main.c interface.h submit.h 
 interface.o : interface.c interface.h 
