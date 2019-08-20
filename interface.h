@@ -11,7 +11,7 @@ void delete_list();
 
 void edit_list(FILE *fp);
 
-void new_list(FILE *fp);
+void new_list();
 
 void delete_from_list(FILE *fp);
 

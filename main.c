@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
         while ((input != 7)) //continous loop to continue editing
         {
             //should probably clean this formatting up a bit
-            printf("\n\n\t1. view\n\t2. add\n\t3. delete\n\t4. change\n\t5. new list\n\t6. delete list\n\t7. exit\n");
+            printf("\n\n1. view\n2. add\n3. delete\n4. edit\n5. new list\n6. exit\n");
             scanf("%d", &input);
             getchar();
 
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
                 break;
 
             case 3:
-                delete_list();
+                delete_from_list(fp);
                 break;
 
             case 4:
@@ -44,15 +44,12 @@ int main(int argc, char *argv[])
                 break;
 
             case 5:
-                //TODO
+                new_list();
                 break;
 
             case 6:
-                //TODO
-                break;
-
-            case 7:
                 return 0; //still unsure about terminations
+                break;
                 break;
 
             default:

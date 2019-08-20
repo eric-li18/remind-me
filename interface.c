@@ -3,16 +3,18 @@
 #include <string.h>
 #include "interface.h"
 
+#define FILE_NAME "reminders.csv"
+
 void print_list(FILE *fp)
 {
-    printf("\n==========================================\n");
-    system("(head -n 2 test.csv && tail -n+3 test.csv | sort -k1) | column -s, -t  | cat");
-    printf("==========================================\n");
+    printf("\n===========================================\n");
+    system("(head -n 2 reminders.csv && tail -n+3 reminders.csv | sort -k1) | column -s, -t  | cat");
+    printf("===========================================\n");
 }
 
 void add_to_list(FILE *fp)
 {
-    if ((fp = fopen("reminders.txt", "w")) == NULL)
+    if ((fp = fopen(FILE_NAME, "a")) == NULL)
     {
         fprintf(stderr, "Cannot open list\n");
     }
@@ -22,9 +24,8 @@ void add_to_list(FILE *fp)
         char name[100];
         char date[12];
         char time[9];
-        getchar();
 
-        printf("Enter class:");
+        printf("\nEnter class:");
         fgets(class, 100, stdin);
         class[strlen(class) - 1] = '\0';
 
@@ -40,7 +41,7 @@ void add_to_list(FILE *fp)
         fgets(time, 9, stdin);
         date[strlen(date) - 1] = '\0';
 
-        fprintf(fp, "\n\n%s, %s, %s", name, date, time);
+        fprintf(fp, "\n%s,%s,%s,%s", class, name, date, time);
         fclose(fp);
     }
 }
@@ -58,7 +59,7 @@ void delete_list()
     {
         printf("\n%s was not deleted.", filename);
     }
-    else if(remove(filename) == 0)
+    else if (remove(filename) == 0)
     {
         printf("\n%s was deleted.", filename);
     }
@@ -78,7 +79,25 @@ void edit_list(FILE *fp)
     //TODO
 }
 
-void new_list(FILE *fp)
+void new_list()
 {
-    //TODO
+    printf("Creating a new list will delete all the data from the old list.\nDo you wish to continue? (y/n)");
+    char confirm[2];
+    fgets(confirm, 2, stdin);
+    if (strcmp(confirm, "y") != 0)
+    {
+        printf("\n%s was not deleted.", FILE_NAME);
+    }
+    else if (remove(FILE_NAME) == 0)
+    {
+        printf("\n%s was deleted.\n", FILE_NAME);
+        FILE *fp = fopen(FILE_NAME, "w");
+        fprintf(fp, "Course,Assigments,Due Date,Due Time");
+        fclose(fp);
+        printf("%s is now blank.\n", FILE_NAME);
+    }
+    else
+    {
+        fprintf(stderr, "\nAn error occurred, the file was not deleted.");
+    }
 }
