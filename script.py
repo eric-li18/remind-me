@@ -21,11 +21,13 @@ class formFillOut():
         passwordInput.send_keys(Keys.ENTER)
     
     def submitHW(self,file):
-        time.sleep(0.75)
+        time.sleep(1)
         self.browser.find_element_by_partial_link_text("Graded HW").click()
         try:
             self.browser.find_element_by_link_text("Re-submit Assignment").click()
             self.browser.find_element_by_class_name("input-file").send_keys(os.getcwd()+file)
+            submit = self.browser.find_element_by_id("submit_file_button")
+            submit.send_keys(Keys.ENTER)
         except NoSuchElementException:
             try:
                 self.browser.find_element_by_class_name("icon-check")
@@ -34,7 +36,7 @@ class formFillOut():
                 print("\n ****Are you on the right webpage?****")
 
 
-    def checkMarkus(self):
+    """ def checkMarkus(self):
         time.sleep(0.75)
         markList = self.browser.find_elements_by_tag_name("tr")
         for i in markList:
@@ -46,11 +48,7 @@ class formFillOut():
                 assignment = i.find_elements_by_css_selector("td > a")[1]
                 print(assignment.text)
             none = i.find_elements_by_css_selector("td")[2]
-            print(none.text)
-
-            
-
-
+            print(none.text) """
 
 
     def __exit__(self,exc_type, exc_value, traceback):
@@ -59,7 +57,7 @@ class formFillOut():
 user = getpass("Username:")
 pwd = getpass()
 x = formFillOut(user,pwd)
-#x.getURL("https://q.utoronto.ca/courses/96305/assignments","username","password")
-#x.submitHW("/Graded HW10.pdf")
-x.getURL("https://markus.utsc.utoronto.ca/cscb09s19/en/assignments","user_login","user_password")
-x.checkMarkus()
+x.getURL("https://q.utoronto.ca/courses/96305/assignments","username","password")
+x.submitHW("/Graded HW11.pdf")
+#x.getURL("https://markus.utsc.utoronto.ca/cscb09s19/en/assignments","user_login","user_password")
+#x.checkMarkus()
