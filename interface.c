@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -45,56 +44,41 @@ void add_to_list(FILE *fp)
         fclose(fp);
     }
 }
-=======
-#include <stdio.h>
-#include <string.h>
-#include "interface.h"
 
-void print_list(FILE *fp)
+void delete_list()
 {
-    if ((fp = fopen("reminders.txt", "r")) == NULL)
+    char filename[100];
+    printf("Enter the name of the file you want to remove: ");
+    scanf("%s", filename);
+    getchar();
+    printf("Are you sure you want to remove %s? (y/n)", filename);
+    char confirm[2];
+    fgets(confirm, 2, stdin);
+    if (strcmp(confirm, "y") != 0)
     {
-        fprintf(stderr, "Cannot open list\n");
+        printf("\n%s was not deleted.", filename);
+    }
+    else if(remove(filename) == 0)
+    {
+        printf("\n%s was deleted.", filename);
     }
     else
     {
-        printf("\n=========================\n");
-        char c;
-        while ((c = getc(fp)) != EOF)
-        {
-            putchar(c);
-        }
-        fclose(fp);
-        printf("\n=========================\n");
+        fprintf(stderr, "\nAn error occurred, the file was not deleted.");
     }
 }
 
-void add_to_list(FILE *fp)
+void delete_from_list(FILE *fp)
 {
-    if ((fp = fopen("reminders.txt", "a")) == NULL)
-    {
-        fprintf(stderr, "Cannot open list\n");
-    }
-    else
-    {
-        char name[100];
-        char date[12];
-        char time[9];
-
-        printf("Enter assignment name:");
-        fgets(name, 100, stdin);
-        name[strlen(name) - 1] = '\0';
-
-        printf("Enter due date (dd/mm/yyyy):");
-        fgets(date, 12, stdin);
-        date[strlen(date) - 1] = '\0';
-
-        printf("Enter time (00:00AM/PM):");
-        fgets(time, 9, stdin);
-        date[strlen(date) - 1] = '\0';
-
-        fprintf(fp, "\n\n%s, %s, %s", name, date, time);
-        fclose(fp);
-    }
+    //TODO
 }
->>>>>>> 3057c7c87c837ff703d38e9ecaec44c4a6288670
+
+void edit_list(FILE *fp)
+{
+    //TODO
+}
+
+void new_list(FILE *fp)
+{
+    //TODO
+}

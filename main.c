@@ -5,9 +5,6 @@
 
 int main(int argc, char *argv[])
 {
-    //argv[1] - ?
-    //argv[2] - ?
-
     if (argc != 2)
     {
         fprintf(stderr, "use argument: edit, ..? \n");
@@ -21,7 +18,7 @@ int main(int argc, char *argv[])
         int input;
 
         FILE *fp;
-        while ((input != 7)) //continous loop to continue editting
+        while ((input != 7)) //continous loop to continue editing
         {
             //should probably clean this formatting up a bit
             printf("\n\n\t1. view\n\t2. add\n\t3. delete\n\t4. change\n\t5. new list\n\t6. delete list\n\t7. exit\n");
@@ -39,7 +36,7 @@ int main(int argc, char *argv[])
                 break;
 
             case 3:
-                //TODO
+                delete_list();
                 break;
 
             case 4:
