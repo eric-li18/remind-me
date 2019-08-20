@@ -5,3 +5,5 @@ if [ $# -lt 1 ] ; then
 else
     ./main $1
 fi
+
+make clean
