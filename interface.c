@@ -48,20 +48,16 @@ void add_to_list(FILE *fp)
 
 void delete_list()
 {
-    char filename[100];
-    printf("Enter the name of the file you want to remove: ");
-    scanf("%s", filename);
-    getchar();
-    printf("Are you sure you want to remove %s? (y/n)", filename);
+    printf("Are you sure you want to remove %s? (y/n)", FILE_NAME);
     char confirm[2];
     fgets(confirm, 2, stdin);
     if (strcmp(confirm, "y") != 0)
     {
-        printf("\n%s was not deleted.", filename);
+        printf("\n%s was not deleted.", FILE_NAME);
     }
-    else if (remove(filename) == 0)
+    else if (remove(FILE_NAME) == 0)
     {
-        printf("\n%s was deleted.", filename);
+        printf("\n%s was deleted.", FILE_NAME);
     }
     else
     {
@@ -84,15 +80,15 @@ void new_list()
     printf("Creating a new list will delete all the data from the old list.\nDo you wish to continue? (y/n)");
     char confirm[2];
     fgets(confirm, 2, stdin);
+    FILE *fp;
     if (strcmp(confirm, "y") != 0)
     {
         printf("\n%s was not deleted.", FILE_NAME);
     }
-    else if (remove(FILE_NAME) == 0)
+    else if ((fp =fopen(FILE_NAME, "w+")) != NULL)
     {
         printf("\n%s was deleted.\n", FILE_NAME);
-        FILE *fp = fopen(FILE_NAME, "w");
-        fprintf(fp, "Course,Assigments,Due Date,Due Time");
+        fprintf(fp, "Course,Assignments,Due Date,Due Time");
         fclose(fp);
         printf("%s is now blank.\n", FILE_NAME);
     }
