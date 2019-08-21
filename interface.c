@@ -39,29 +39,10 @@ void add_to_list(FILE *fp)
 
         printf("Enter time (00:00AM/PM):");
         fgets(time, 9, stdin);
-        date[strlen(date) - 1] = '\0';
+        time[strlen(time) - 1] = '\0';
 
         fprintf(fp, "\n%s,%s,%s,%s", class, name, date, time);
         fclose(fp);
-    }
-}
-
-void delete_list()
-{
-    printf("Are you sure you want to remove %s? (y/n)", FILE_NAME);
-    char confirm[2];
-    fgets(confirm, 2, stdin);
-    if (strcmp(confirm, "y") != 0)
-    {
-        printf("\n%s was not deleted.", FILE_NAME);
-    }
-    else if (remove(FILE_NAME) == 0)
-    {
-        printf("\n%s was deleted.", FILE_NAME);
-    }
-    else
-    {
-        fprintf(stderr, "\nAn error occurred, the file was not deleted.");
     }
 }
 
@@ -85,7 +66,7 @@ void new_list()
     {
         printf("\n%s was not deleted.", FILE_NAME);
     }
-    else if ((fp =fopen(FILE_NAME, "w+")) != NULL)
+    else if ((fp = fopen(FILE_NAME, "w+")) != NULL)
     {
         printf("\n%s was deleted.\n", FILE_NAME);
         fprintf(fp, "Course,Assignments,Due Date,Due Time");

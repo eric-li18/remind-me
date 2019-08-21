@@ -18,10 +18,12 @@ int main(int argc, char *argv[])
         int input;
 
         FILE *fp;
-        while ((input != 7)) //continous loop to continue editing
+        printf("\n\nremind-me\n");
+        printf("===========");
+        while ((input != 6)) //continous loop to continue editing
         {
             //should probably clean this formatting up a bit
-            printf("\n\n1. view\n2. add\n3. delete\n4. edit\n5. new list\n6. exit\n");
+            printf("\n1. view\n2. add\n3. delete\n4. edit\n5. new list\n6. exit\n");
             scanf("%d", &input);
             getchar();
 
