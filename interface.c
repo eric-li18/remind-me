@@ -67,16 +67,33 @@ void delete_list()
 
 void delete_from_list(FILE *fp)
 {
-    char class[10];
+    char class_query[10];
     printf("Enter the course you want to delete from: ");
-    fgets(class,10,stdin);
-    class[strlen(class)-1] = '\0';
+    fgets(class_query,10,stdin);
+    class_query[strlen(class_query)-1] = '\0';
 
-    char assignment[100];
+    char name_query[100];
     printf("Enter the assignment name: ");
-    fgets(assignment,100,stdin);
-    assignment[strlen(assignment)-1] = '\0';
+    fgets(name_query,100,stdin);
+    name_query[strlen(name_query)-1] = '\0';
 
+    //char name[100];
+    //char class[100];
+
+    fp = fopen(FILE_NAME, "r");
+    char row[1024];
+    char *class_token;
+    char *name_token;
+    while(fgets(row,1024,fp)){
+        while((class_token = strtok(row,",")) != NULL){
+            name_token = strtok(row, ",");
+            if(strcmp(class_token,class_query) && (name_token,name_query)){
+                //TODO
+            }
+        }
+    }
+
+    fclose(fp);
 }
 
 void edit_list(FILE *fp)
