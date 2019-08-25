@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
                 break;
 
             default:
-                fprintf(stderr, "Invalid input");
+                fprintf(stderr, "Invalid input\n");
             }
         }
     }

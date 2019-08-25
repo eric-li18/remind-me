@@ -48,7 +48,16 @@ void add_to_list(FILE *fp)
 
 void delete_from_list(FILE *fp)
 {
-    //TODO
+    char class[10];
+    printf("Enter the course you want to delete from: ");
+    fgets(class,10,stdin);
+    class[strlen(class)-1] = '\0';
+
+    char assignment[100];
+    printf("Enter the assignment name: ");
+    fgets(assignment,100,stdin);
+    assignment[strlen(assignment)-1] = '\0';
+
 }
 
 void edit_list(FILE *fp)
