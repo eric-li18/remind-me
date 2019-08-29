@@ -6,6 +6,7 @@
 #include "interface.h"
 
 #define FILE_NAME "reminders.csv"
+#define COURSE_INFO "course_info.csv"
 
 void print_list(FILE *fp)
 {
@@ -99,7 +100,6 @@ int check_valid_time(char time[8])
     }
     else
     {
-        printf("here 1\n");
         printf("Please enter a valid time.\n");
         return 1;
     }
@@ -109,7 +109,7 @@ void add_to_list(FILE *fp)
 {
     if ((fp = fopen(FILE_NAME, "a")) == NULL)
     {
-        fprintf(stderr, "Cannot open list\n");
+        fprintf(stderr, "Cannot open reminders list.\n");
     }
     else
     {
@@ -117,16 +117,39 @@ void add_to_list(FILE *fp)
         char name[100];
         char date[100];
         char time[100];
+        char professor[100];
+        char email[100];
+        char command[100];
+        int exit_code;
 
         printf("\nEnter class:");
         scanf("%s", class);
+        sprintf(command, "grep -q '%s' %s", class, COURSE_INFO);
+        exit_code = system(command);
+        if (WEXITSTATUS(exit_code) != 0)
+        {
+            FILE *fp2;
+            if ((fp2 = fopen(COURSE_INFO, "a")) == NULL)
+            {
+                fprintf(stderr, "Cannot open course list.\n");
+                return;
+            }
+            //Implementation for editing this list?
+            printf("This is a new course.\n");
+            printf("Enter the professor's name:");
+            scanf("%s", professor);
+            printf("Enter the professor's email:");
+            scanf("%s", email);
+            fprintf(fp2, "\n%s,%s,%s", class, professor, email);
+            printf("The course has now been registered.\n");
+            fclose(fp2);
+        }
 
         printf("Enter assignment name:");
         scanf("%s", name);
 
-        char command[100];
         sprintf(command, "grep -q '%s,%s' %s", class, name, FILE_NAME);
-        int exit_code = system(command);
+        exit_code = system(command);
         if (WEXITSTATUS(exit_code) == 0)
         {
             printf("%s in %s already exists.\n", name, class);
