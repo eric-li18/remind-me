@@ -1,4 +1,4 @@
-make
+make > /dev/null
 
 : '
 if [ $# -lt 1 ] ; then
@@ -8,4 +8,4 @@ fi
 '
 ./main edit
 
-make clean
+make clean > /dev/null
