@@ -122,7 +122,7 @@ void add_to_list(FILE *fp)
         char command[100];
         int exit_code;
 
-        printf("\nEnter class:");
+        printf("\nEnter class: ");
         scanf("%s", class);
         sprintf(command, "grep -q '%s' %s", class, COURSE_INFO);
         exit_code = system(command);
@@ -136,16 +136,16 @@ void add_to_list(FILE *fp)
             }
             //Implementation for editing this list?
             printf("This is a new course.\n");
-            printf("Enter the professor's name:");
+            printf("Enter the professor's name: ");
             scanf("%s", professor);
-            printf("Enter the professor's email:");
+            printf("Enter the professor's email: ");
             scanf("%s", email);
             fprintf(fp2, "\n%s,%s,%s", class, professor, email);
             printf("The course has now been registered.\n");
             fclose(fp2);
         }
 
-        printf("Enter assignment name:");
+        printf("Enter assignment name: ");
         scanf("%s", name);
 
         sprintf(command, "grep -q '%s,%s' %s", class, name, FILE_NAME);
@@ -155,11 +155,12 @@ void add_to_list(FILE *fp)
             printf("%s in %s already exists.\n", name, class);
             return;
         }
+        getchar();
 
         int valid_date = 1;
         while (valid_date != 0)
         {
-            printf("Enter due date (dd/mm/yyyy):");
+            printf("Enter due date (dd/mm/yyyy): ");
             fgets(date, 100, stdin);
             date[strlen(date) - 1] = '\0';
             valid_date = check_valid_date(date);
@@ -168,7 +169,7 @@ void add_to_list(FILE *fp)
         int valid_time = 1;
         while (valid_time != 0)
         {
-            printf("Enter time (00:00AM/PM):");
+            printf("Enter time (00:00AM/PM): ");
             //might change to 24h time later
             fgets(time, 100, stdin);
             time[strlen(time) - 1] = '\0';
@@ -193,13 +194,17 @@ void delete_from_list()
     name_query[strlen(name_query) - 1] = '\0';
 
     char confirm[2];
-    printf("Are you sure you want to remove %s from %s? (y/n)\t", name_query, class_query);
+    printf("Are you sure you want to remove %s from %s? (y/n): ", name_query, class_query);
     fgets(confirm, 2, stdin);
 
     if (strcmp(confirm, "y") == 0)
     {
         char cmd[1024];
-        sprintf(cmd, "grep -v '%s,%s' %s | tee backup.csv | cp backup.csv %s", class_query, name_query, FILE_NAME, FILE_NAME);
+        // sprintf(cmd, "grep -v '%s,%s' %s | tee backup.csv | cp backup.csv %s", class_query, name_query, FILE_NAME, FILE_NAME);
+        // system(cmd);
+        sprintf(cmd, "grep -v '%s,%s' %s > backup.csv", class_query, name_query, FILE_NAME);
+        system(cmd);
+        sprintf(cmd, "cp backup.csv %s", FILE_NAME);
         system(cmd);
         printf("The entry was deleted.");
     }
@@ -213,11 +218,11 @@ void revert_changes(FILE *fp)
 {
     char confirm[2];
 
-    printf("Reverting to last backup will erase all current info. This is the current file state: \n");
+    printf("Reverting to last backup will erase all current info. This is the current file state:\n");
     print_list(fp);
     printf("\nThis is the backup file state:\n\n");
     system("cat backup.csv");
-    printf("\nDo you wish to continue? (y/n)\t");
+    printf("\nDo you wish to continue? (y/n): ");
     fgets(confirm, 2, stdin);
 
     if (strcmp(confirm, "y") == 0)
@@ -237,7 +242,7 @@ void edit_list(FILE *fp)
 
 void new_list()
 {
-    printf("Creating a new list will delete all the data from the old list.\nDo you wish to continue? (y/n)");
+    printf("Creating a new list will delete all the data from the old list.\nDo you wish to continue? (y/n): ");
     char confirm[2];
     fgets(confirm, 2, stdin);
     FILE *fp;
