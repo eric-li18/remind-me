@@ -18,12 +18,9 @@ int main(int argc, char *argv[])
         int input;
 
         FILE *fp;
-        printf("\n\nremind-me\n");
-        printf("===========");
-        while ((input != 6)) //continous loop to continue editing
+        while ((input != 8))
         {
-            //should probably clean this formatting up a bit
-            printf("\n1. view\n2. add\n3. delete\n4. edit\n5. new list\n6. exit\n");
+            printf("\n\n1. view\n2. add\n3. delete\n4. edit\n5. new list\n6. revert\n7. exit\n");
             scanf("%d", &input);
             getchar();
 
@@ -50,9 +47,11 @@ int main(int argc, char *argv[])
                 break;
 
             case 6:
-                return 0; //still unsure about terminations
+                revert_changes(fp);
                 break;
-                break;
+
+            case 7:
+                return 0;
 
             default:
                 fprintf(stderr, "Invalid input\n");

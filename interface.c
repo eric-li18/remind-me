@@ -14,6 +14,58 @@ void print_list(FILE *fp)
     printf("===========================================\n");
 }
 
+int check_valid_date(char date[11])
+{
+    int day, month, year;
+
+    if ((sscanf(date, "%d/%d/%d", &day, &month, &year)) == EOF)
+    {
+        printf("Please enter a valid date.\n");
+        return 1;
+    };
+
+    if (year >= 1900 && year <= 9999)
+    {
+        if (month >= 1 && month <= 12)
+        {
+            if ((day >= 1 && day <= 31) && (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12))
+            {
+                return 0;
+            }
+            else if ((day >= 1 && day <= 30) && (month == 4 || month == 6 || month == 9 || month == 11))
+            {
+                return 0;
+            }
+            else if ((day >= 1 && day <= 28) && (month == 2))
+            {
+                return 0;
+            }
+            else if (day == 29 && month == 2 && (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)))
+            {
+                return 0;
+            }
+            else
+            {
+                printf("here 4\n");
+                printf("Please enter a valid date.\n");
+                return 1;
+            }
+        }
+        else
+        {
+            printf("here 3\n");
+            printf("Please enter a valid date.\n");
+            return 1;
+        }
+    }
+    else
+    {
+        printf("here 2\n");
+        printf("Please enter a valid date. \n");
+        return 1;
+    }
+}
+
 void add_to_list(FILE *fp)
 {
     if ((fp = fopen(FILE_NAME, "a")) == NULL)
@@ -24,7 +76,7 @@ void add_to_list(FILE *fp)
     {
         char class[100];
         char name[100];
-        char date[12];
+        char date[100];
         char time[9];
 
         printf("\nEnter class:");
@@ -35,9 +87,24 @@ void add_to_list(FILE *fp)
         fgets(name, 100, stdin);
         name[strlen(name) - 1] = '\0';
 
-        printf("Enter due date (dd/mm/yyyy):");
-        fgets(date, 12, stdin);
-        date[strlen(date) - 1] = '\0';
+        int valid_date = 1;
+
+        while (valid_date != 0)
+        {
+            printf("Enter due date (dd/mm/yyyy):");
+            fgets(date, 100, stdin);
+
+            date[strlen(date) - 1] = '\0';
+            if (strlen(date) == 10)
+            {
+                valid_date = check_valid_date(date);
+            }
+            else
+            {
+                printf("here 1\n");
+                printf("Please enter a valid date.\n");
+            }
+        }
 
         printf("Enter time (00:00AM/PM):");
         fgets(time, 9, stdin);
@@ -45,6 +112,25 @@ void add_to_list(FILE *fp)
 
         fprintf(fp, "\n%s,%s,%s,%s", class, name, date, time);
         fclose(fp);
+    }
+}
+
+void delete_list()
+{
+    char confirm[2];
+    printf("Are you sure you want to remove %s? (y/n)\t", FILE_NAME);
+    fgets(confirm, 2, stdin);
+    if (strcmp(confirm, "y") != 0)
+    {
+        printf("\n%s was not deleted.", FILE_NAME);
+    }
+    else if (remove(FILE_NAME) == 0)
+    {
+        printf("\n%s was deleted.", FILE_NAME);
+    }
+    else
+    {
+        fprintf(stderr, "\nAn error occurred, the file was not deleted.");
     }
 }
 
@@ -60,26 +146,44 @@ void delete_from_list(FILE *fp)
     fgets(name_query, 100, stdin);
     name_query[strlen(name_query) - 1] = '\0';
 
-    //char name[100];
-    //char class[100];
+    char cmd[1024];
+    char confirm[2];
 
-    fp = fopen(FILE_NAME, "r");
-    char row[1024];
-    char *class_token;
-    char *name_token;
-    while (fgets(row, 1024, fp))
+    sprintf(cmd, "grep -v '%s,%s' %s | tee backup.csv | cp backup.csv %s", class_query, name_query, FILE_NAME, FILE_NAME);
+
+    printf("Are you sure you want to remove %s from %s? (y/n)\t", name_query, class_query);
+    fgets(confirm, 2, stdin);
+
+    if (strcmp(confirm, "y") == 0)
     {
-        while ((class_token = strtok(row, ",")) != NULL)
-        {
-            name_token = strtok(row, ",");
-            if (strcmp(class_token, class_query) && (name_token, name_query))
-            {
-                //TODO
-            }
-        }
+        system(cmd);
+        printf("The entry was deleted.");
     }
+    else
+    {
+        fprintf(stderr, "\nAn error occurred, the entry was not deleted.");
+    }
+}
 
-    fclose(fp);
+void revert_changes(FILE *fp)
+{
+    char confirm[2];
+
+    printf("Reverting to last backup will erase all current info. This is the current file state: \n");
+    print_list(fp);
+    printf("\nThis is the backup file state:\n\n");
+    system("cat backup.csv");
+    printf("\nDo you wish to continue? (y/n)\t");
+    fgets(confirm, 2, stdin);
+
+    if (strcmp(confirm, "y") == 0)
+    {
+        system("cp backup.csv reminders.csv");
+    }
+    else
+    {
+        fprintf(stderr, "\nAn error occurred, the file was not reverted.");
+    }
 }
 
 void edit_list(FILE *fp)
