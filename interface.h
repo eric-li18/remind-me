@@ -15,4 +15,6 @@ void new_list();
 
 void delete_from_list(FILE *fp);
 
+void revert_changes(FILE *fp);
+
 #endif

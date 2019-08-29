@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
         int input;
 
         FILE *fp;
-        while ((input != 7))
+        while ((input != 8))
         {
-            printf("\n\n1. view\n2. add\n3. delete\n4. edit\n5. new list\n6. exit\n");
+            printf("\n\n1. view\n2. add\n3. delete\n4. edit\n5. new list\n6. revert\n7. exit\n");
             scanf("%d", &input);
             getchar();
 
@@ -47,6 +47,10 @@ int main(int argc, char *argv[])
                 break;
 
             case 6:
+                revert_changes(fp);
+                break;
+            
+            case 7:
                 return 0;
 
             default:

@@ -9,6 +9,7 @@ void print_list(FILE *fp)
 {
     printf("\n===========================================\n");
     system("(head -n 2 reminders.csv && tail -n+3 reminders.csv | sort -k1) | column -s, -t  | cat");
+    // change this system() call so that reminders.csv is using FILE_NAME through use of sprintf().
     printf("===========================================\n");
 }
 
@@ -48,8 +49,8 @@ void add_to_list(FILE *fp)
 
 void delete_list()
 {
-    printf("Are you sure you want to remove %s? (y/n)", FILE_NAME);
     char confirm[2];
+    printf("Are you sure you want to remove %s? (y/n)\t", FILE_NAME);
     fgets(confirm, 2, stdin);
     if (strcmp(confirm, "y") != 0)
     {
@@ -78,10 +79,38 @@ void delete_from_list(FILE *fp)
     name_query[strlen(name_query)-1] = '\0';
 
     char cmd[1024];
+    char confirm[2];
 
     sprintf(cmd, "grep -v '%s,%s' %s | tee backup.csv | cp backup.csv %s",class_query,name_query,FILE_NAME,FILE_NAME);
 
-    system(cmd);
+    printf("Are you sure you want to remove %s from %s? (y/n)\t",name_query,class_query );
+    fgets(confirm, 2, stdin);
+
+    if (strcmp(confirm, "y") == 0){
+        system(cmd);
+        printf("The entry was deleted.");
+    }
+    else{
+        fprintf(stderr, "\nAn error occurred, the entry was not deleted.");
+    }
+}
+
+void revert_changes(FILE *fp){
+    char confirm[2];
+
+    printf("Reverting to last backup will erase all current info. This is the current file state: \n");
+    print_list(fp);
+    printf("\nThis is the backup file state:\n\n");
+    system("cat backup.csv");
+    printf("\nDo you wish to continue? (y/n)\t");
+    fgets(confirm, 2, stdin);
+
+    if (strcmp(confirm, "y") == 0){
+        system("cp backup.csv reminders.csv");   
+    }
+    else{
+        fprintf(stderr, "\nAn error occurred, the file was not reverted.");
+    }
 }
 
 void edit_list(FILE *fp)
