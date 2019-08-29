@@ -77,23 +77,11 @@ void delete_from_list(FILE *fp)
     fgets(name_query,100,stdin);
     name_query[strlen(name_query)-1] = '\0';
 
-    //char name[100];
-    //char class[100];
+    char cmd[1024];
 
-    fp = fopen(FILE_NAME, "r");
-    char row[1024];
-    char *class_token;
-    char *name_token;
-    while(fgets(row,1024,fp)){
-        while((class_token = strtok(row,",")) != NULL){
-            name_token = strtok(row, ",");
-            if(strcmp(class_token,class_query) && (name_token,name_query)){
-                //TODO
-            }
-        }
-    }
+    sprintf(cmd, "grep -v '%s,%s' %s | tee backup.csv | cp backup.csv %s",class_query,name_query,FILE_NAME,FILE_NAME);
 
-    fclose(fp);
+    system(cmd);
 }
 
 void edit_list(FILE *fp)
