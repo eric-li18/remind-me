@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/wait.h>
+#include <ctype.h>
 #include "interface.h"
 
 #define FILE_NAME "reminders.csv"
@@ -18,11 +20,11 @@ int check_valid_date(char date[11])
 {
     int day, month, year;
 
-    if ((sscanf(date, "%d/%d/%d", &day, &month, &year)) == EOF)
+    if ((sscanf(date, "%d/%d/%d", &day, &month, &year)) != 3)
     {
         printf("Please enter a valid date.\n");
         return 1;
-    };
+    }
 
     if (year >= 1900 && year <= 9999)
     {
@@ -46,21 +48,18 @@ int check_valid_date(char date[11])
             }
             else
             {
-                printf("here 4\n");
                 printf("Please enter a valid date.\n");
                 return 1;
             }
         }
         else
         {
-            printf("here 3\n");
             printf("Please enter a valid date.\n");
             return 1;
         }
     }
     else
     {
-        printf("here 2\n");
         printf("Please enter a valid date. \n");
         return 1;
     }
@@ -68,9 +67,15 @@ int check_valid_date(char date[11])
 
 int check_valid_time(char time[8])
 {
+    printf("%s\n", time);
     int hour, minute;
     char AMPM[3];
-    sscanf(time, "%d:%d%s", &hour, &minute, AMPM);
+    if ((sscanf(time, "%d:%d%s", &hour, &minute, AMPM)) != 3)
+    {
+        printf("%d, %d, %s\n", hour, minute, AMPM);
+        printf("Please enter a valid time.\n");
+        return 1;
+    }
 
     if (hour >= 1 && hour <= 12)
     {
@@ -94,6 +99,7 @@ int check_valid_time(char time[8])
     }
     else
     {
+        printf("here 1\n");
         printf("Please enter a valid time.\n");
         return 1;
     }
@@ -113,12 +119,19 @@ void add_to_list(FILE *fp)
         char time[100];
 
         printf("\nEnter class:");
-        fgets(class, 100, stdin);
-        class[strlen(class) - 1] = '\0';
+        scanf("%s", class);
 
         printf("Enter assignment name:");
-        fgets(name, 100, stdin);
-        name[strlen(name) - 1] = '\0';
+        scanf("%s", name);
+
+        char command[100];
+        sprintf(command, "grep -q '%s,%s' %s", class, name, FILE_NAME);
+        int exit_code = system(command);
+        if (WEXITSTATUS(exit_code) == 0)
+        {
+            printf("%s in %s already exists.\n", name, class);
+            return;
+        }
 
         int valid_date = 1;
         while (valid_date != 0)
@@ -133,6 +146,7 @@ void add_to_list(FILE *fp)
         while (valid_time != 0)
         {
             printf("Enter time (00:00AM/PM):");
+            //might change to 24h time later
             fgets(time, 100, stdin);
             time[strlen(time) - 1] = '\0';
             valid_time = check_valid_time(time);

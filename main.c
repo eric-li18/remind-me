@@ -18,9 +18,11 @@ int main(int argc, char *argv[])
         int input;
 
         FILE *fp;
-        while ((input != 8))
+        printf("\n\nremind-me\n");
+        printf("===========");
+        while ((input != 7))
         {
-            printf("\n\n1. view\n2. add\n3. delete\n4. edit\n5. new list\n6. revert\n7. exit\n");
+            printf("\n1. view\n2. add\n3. delete\n4. edit\n5. new list\n6. revert\n7. exit\n");
             scanf("%d", &input);
             getchar();
 
@@ -39,7 +41,7 @@ int main(int argc, char *argv[])
                 break;
 
             case 4:
-                //TODO
+                edit_list(fp);
                 break;
 
             case 5:
