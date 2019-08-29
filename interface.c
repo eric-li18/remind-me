@@ -66,6 +66,39 @@ int check_valid_date(char date[11])
     }
 }
 
+int check_valid_time(char time[8])
+{
+    int hour, minute;
+    char AMPM[3];
+    sscanf(time, "%d:%d%s", &hour, &minute, AMPM);
+
+    if (hour >= 1 && hour <= 12)
+    {
+        if (minute >= 1 && minute <= 59)
+        {
+            if (strcmp(AMPM, "AM") == 0 || strcmp(AMPM, "PM") == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                printf("Please enter a valid time.\n");
+                return 1;
+            }
+        }
+        else
+        {
+            printf("Please enter a valid time.\n");
+            return 1;
+        }
+    }
+    else
+    {
+        printf("Please enter a valid time.\n");
+        return 1;
+    }
+}
+
 void add_to_list(FILE *fp)
 {
     if ((fp = fopen(FILE_NAME, "a")) == NULL)
@@ -77,7 +110,7 @@ void add_to_list(FILE *fp)
         char class[100];
         char name[100];
         char date[100];
-        char time[9];
+        char time[100];
 
         printf("\nEnter class:");
         fgets(class, 100, stdin);
@@ -88,49 +121,25 @@ void add_to_list(FILE *fp)
         name[strlen(name) - 1] = '\0';
 
         int valid_date = 1;
-
         while (valid_date != 0)
         {
             printf("Enter due date (dd/mm/yyyy):");
             fgets(date, 100, stdin);
-
             date[strlen(date) - 1] = '\0';
-            if (strlen(date) == 10)
-            {
-                valid_date = check_valid_date(date);
-            }
-            else
-            {
-                printf("here 1\n");
-                printf("Please enter a valid date.\n");
-            }
+            valid_date = check_valid_date(date);
         }
 
-        printf("Enter time (00:00AM/PM):");
-        fgets(time, 9, stdin);
-        time[strlen(time) - 1] = '\0';
+        int valid_time = 1;
+        while (valid_time != 0)
+        {
+            printf("Enter time (00:00AM/PM):");
+            fgets(time, 100, stdin);
+            time[strlen(time) - 1] = '\0';
+            valid_time = check_valid_time(time);
+        }
 
         fprintf(fp, "\n%s,%s,%s,%s", class, name, date, time);
         fclose(fp);
-    }
-}
-
-void delete_list()
-{
-    char confirm[2];
-    printf("Are you sure you want to remove %s? (y/n)\t", FILE_NAME);
-    fgets(confirm, 2, stdin);
-    if (strcmp(confirm, "y") != 0)
-    {
-        printf("\n%s was not deleted.", FILE_NAME);
-    }
-    else if (remove(FILE_NAME) == 0)
-    {
-        printf("\n%s was deleted.", FILE_NAME);
-    }
-    else
-    {
-        fprintf(stderr, "\nAn error occurred, the file was not deleted.");
     }
 }
 
