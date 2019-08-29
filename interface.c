@@ -180,7 +180,7 @@ void add_to_list(FILE *fp)
     }
 }
 
-void delete_from_list(FILE *fp)
+void delete_from_list()
 {
     char class_query[10];
     printf("Enter the course you want to delete from: ");
@@ -192,16 +192,14 @@ void delete_from_list(FILE *fp)
     fgets(name_query, 100, stdin);
     name_query[strlen(name_query) - 1] = '\0';
 
-    char cmd[1024];
     char confirm[2];
-
-    sprintf(cmd, "grep -v '%s,%s' %s | tee backup.csv | cp backup.csv %s", class_query, name_query, FILE_NAME, FILE_NAME);
-
     printf("Are you sure you want to remove %s from %s? (y/n)\t", name_query, class_query);
     fgets(confirm, 2, stdin);
 
     if (strcmp(confirm, "y") == 0)
     {
+        char cmd[1024];
+        sprintf(cmd, "grep -v '%s,%s' %s | tee backup.csv | cp backup.csv %s", class_query, name_query, FILE_NAME, FILE_NAME);
         system(cmd);
         printf("The entry was deleted.");
     }
