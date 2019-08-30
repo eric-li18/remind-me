@@ -17,6 +17,24 @@ void print_list(FILE *fp)
     printf("===========================================\n");
 }
 
+char *trim_spaces(char *str){
+    char *end; 
+    while (isspace((unsigned char)*str))
+    {
+        str++; 
+    }
+    if(*str == 0){
+        return str; 
+    }
+    end = str + strlen(str) - 1; 
+    while (end > str && isspace((unsigned char)*end)) 
+    {
+        end--; 
+    }
+    end[1] = '\0'; 
+    return str; 
+}
+
 int check_valid_date(char date[11])
 {
     int day, month, year;
@@ -113,7 +131,9 @@ void add_to_list(FILE *fp)
     }
     else
     {
+        char buf[100]; 
         char class[100];
+        char trimmed_class[100]; 
         char name[100];
         char date[100];
         char time[100];
@@ -123,7 +143,9 @@ void add_to_list(FILE *fp)
         int exit_code;
 
         printf("\nEnter class: ");
-        scanf("%s", class);
+        fgets(buf, 100, stdin); 
+        class[strlen(buf) - 1] = '\0';
+        strcpy(class, trim_spaces(buf)); 
         sprintf(command, "grep -q '%s' %s", class, COURSE_INFO);
         exit_code = system(command);
         if (WEXITSTATUS(exit_code) != 0)
@@ -136,17 +158,25 @@ void add_to_list(FILE *fp)
             }
             //Implementation for editing this list?
             printf("This is a new course.\n");
+
             printf("Enter the professor's name: ");
-            scanf("%s", professor);
+            fgets(buf, 100, stdin); 
+            class[strlen(buf) - 1] = '\0';
+            strcpy(professor, trim_spaces(buf)); 
+
             printf("Enter the professor's email: ");
-            scanf("%s", email);
+            fgets(buf, 100, stdin); 
+            class[strlen(buf) - 1] = '\0';
+            strcpy(email, trim_spaces(buf)); 
             fprintf(fp2, "\n%s,%s,%s", class, professor, email);
             printf("The course has now been registered.\n");
             fclose(fp2);
         }
 
         printf("Enter assignment name: ");
-        scanf("%s", name);
+        fgets(buf, 100, stdin); 
+        class[strlen(buf) - 1] = '\0';
+        strcpy(name, trim_spaces(buf));  
 
         sprintf(command, "grep -q '%s,%s' %s", class, name, FILE_NAME);
         exit_code = system(command);
@@ -155,14 +185,14 @@ void add_to_list(FILE *fp)
             printf("%s in %s already exists.\n", name, class);
             return;
         }
-        getchar();
 
         int valid_date = 1;
         while (valid_date != 0)
         {
             printf("Enter due date (dd/mm/yyyy): ");
-            fgets(date, 100, stdin);
-            date[strlen(date) - 1] = '\0';
+            fgets(buf, 100, stdin);
+            date[strlen(buf) - 1] = '\0';
+            strcpy(date, trim_spaces(buf)); 
             valid_date = check_valid_date(date);
         }
 
@@ -171,8 +201,9 @@ void add_to_list(FILE *fp)
         {
             printf("Enter time (00:00AM/PM): ");
             //might change to 24h time later
-            fgets(time, 100, stdin);
-            time[strlen(time) - 1] = '\0';
+            fgets(buf, 100, stdin);
+            time[strlen(buf) - 1] = '\0';
+            strcpy(time, trim_spaces(buf)); 
             valid_time = check_valid_time(time);
         }
 
