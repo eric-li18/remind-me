@@ -38,8 +38,9 @@ char *trim_spaces(char *str){
 int check_valid_date(char date[11])
 {
     int day, month, year;
+    char c; 
 
-    if ((sscanf(date, "%d/%d/%d", &day, &month, &year)) != 3)
+    if ((sscanf(date, "%d/%d/%d%c", &day, &month, &year, &c)) != 3)
     {
         printf("Please enter a valid date.\n");
         return 1;
@@ -86,29 +87,19 @@ int check_valid_date(char date[11])
 
 int check_valid_time(char time[8])
 {
-    printf("%s\n", time);
     int hour, minute;
-    char AMPM[3];
-    if ((sscanf(time, "%d:%d%s", &hour, &minute, AMPM)) != 3)
+    char c; 
+    if ((sscanf(time, "%d:%d%c", &hour, &minute, &c)) != 2)
     {
-        printf("%d, %d, %s\n", hour, minute, AMPM);
         printf("Please enter a valid time.\n");
         return 1;
     }
 
-    if (hour >= 1 && hour <= 12)
+    if (hour >= 0 && hour <= 23)
     {
-        if (minute >= 1 && minute <= 59)
+        if (minute >= 0 && minute <= 59)
         {
-            if (strcmp(AMPM, "AM") == 0 || strcmp(AMPM, "PM") == 0)
-            {
-                return 0;
-            }
-            else
-            {
-                printf("Please enter a valid time.\n");
-                return 1;
-            }
+            return 0;
         }
         else
         {
@@ -133,7 +124,6 @@ void add_to_list(FILE *fp)
     {
         char buf[100]; 
         char class[100];
-        char trimmed_class[100]; 
         char name[100];
         char date[100];
         char time[100];
