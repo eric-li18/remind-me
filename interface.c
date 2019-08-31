@@ -189,7 +189,7 @@ void add_to_list(FILE *fp)
         int valid_time = 1;
         while (valid_time != 0)
         {
-            printf("Enter time (00:00AM/PM): ");
+            printf("Enter time (00:00 24h): ");
             //might change to 24h time later
             fgets(buf, 100, stdin);
             time[strlen(buf) - 1] = '\0';
@@ -197,7 +197,7 @@ void add_to_list(FILE *fp)
             valid_time = check_valid_time(time);
         }
 
-        fprintf(fp, "\n%s,%s,%s,%s", class, name, date, time);
+        fprintf(fp, "%s,%s,%s,%s\n", class, name, date, time);
         fclose(fp);
     }
 }
@@ -274,7 +274,7 @@ void new_list()
     else if ((fp = fopen(FILE_NAME, "w+")) != NULL)
     {
         printf("\n%s was deleted.\n", FILE_NAME);
-        fprintf(fp, "Course,Assignments,Due Date,Due Time");
+        fprintf(fp, "Course,Assignments,Due Date,Due Time\n");
         fclose(fp);
         printf("%s is now blank.\n", FILE_NAME);
     }
