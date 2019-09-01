@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-void print_list(FILE *fp);
+void print_list(FILE *fp, char name[]);
 
 char *trim_spaces(char *str);
 

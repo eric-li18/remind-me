@@ -10,10 +10,10 @@
 #define USER_INFO "user_info.txt"
 #define USER_INFO_TMP "user_info_tmp.txt"
 
-void print_list(FILE *fp)
+void print_list(FILE *fp, char name[])
 {
     char print_command[100];
-    sprintf(print_command, "(head -n 2 %s && tail -n+3 %s | sort -k1) | column -s, -t  | cat", FILE_NAME, FILE_NAME);
+    sprintf(print_command, "(head -n 2 %s && tail -n+3 %s | sort -k1) | column -s, -t  | cat", name, name);
     printf("\n===========================================\n");
     system(print_command);
     printf("===========================================\n");
@@ -231,7 +231,7 @@ void delete_from_list()
         system(cmd);
         sprintf(cmd, "cp backup.csv %s", FILE_NAME);
         system(cmd);
-        printf("The entry was deleted.");
+        printf("The entry was deleted.\n");
     }
     else
     {
@@ -243,10 +243,10 @@ void revert_changes(FILE *fp)
 {
     char confirm[2];
 
-    printf("Reverting to last backup will erase all current info. This is the current file state:\n");
-    print_list(fp);
-    printf("\nThis is the backup file state:\n\n");
-    system("cat backup.csv");
+    printf("\nReverting to last backup will erase all current info. This is the current file state:\n");
+    print_list(fp, FILE_NAME);
+    printf("\nThis is the backup file state:\n");
+    print_list(fp, "backup.csv");
     printf("\nDo you wish to continue? (y/n): ");
     fgets(confirm, 2, stdin);
 
