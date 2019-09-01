@@ -18,8 +18,10 @@ int main(int argc, char *argv[])
         int input;
 
         FILE *fp;
-        printf("\033[0;36m\n\n         \n\t\t    _         __             \n     _______ __ _  (_)__  ___/ /_____ _  ___ \n    / __/ -_)  ' \\/ / _ \\/ _  /___/  ' \\/ -_)\n   / /  \\__/_/_/_/_/_//_/\\_,_/   /_/_/_/\\__/ \033[0;32m v1.0.0 \n  \033[0;36m/_/\033[0m deadline monitoring and automated submission   \n");
-        printf("  \033[0;36m==================================================\n");
+        /* printf("\033[0;36m\n\n         \n\t\t    _         __             \n     _______ __ _  (_)__  ___/ /_____ _  ___ \n    / __/ -_)  ' \\/ / _ \\/ _  /___/  ' \\/ -_)\n   / /  \\__/_/_/_/_/_//_/\\_,_/   /_/_/_/\\__/ \033[0;32m v1.0.0 \n  \033[0;36m/_/\033[0m deadline monitoring and automated submission   \n");
+        printf("  \033[0;36m==================================================\n"); */
+
+        printf("\033[0;36m\n\n      ___            _         __             \n     / _ \\___ __ _  (_)__  ___/ /_____ _  ___ \n    / , _/ -_)  ' \\/ / _ \\/ _  /___/  ' \\/ -_)\n   / /| |\\__/_/_/_/_/_//_/\\_,_/   /_/_/_/\\__/  \033[0;32mv1.0.0\n  \033[0;36m/_/ |_|\033[0m deadline monitoring and automated submission      \n\033[0;36m  ====================================================\n\n");
         while (1)
         {
             printf("\033[1;36m\n1. View monitored assignments\n2. Add assignments to monitor\n3. Delete assignment from monitoring\n4. Edit monitoring list\n5. Reset monitoring list\n6. Revert to backup list\n7. Exit program\n\033[0m");
