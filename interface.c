@@ -44,78 +44,39 @@ int check_valid_date(char date[11])
     int day, month, year;
     char c;
 
-    if ((sscanf(date, "%d/%d/%d%c", &day, &month, &year, &c)) != 3)
+    if ((sscanf(date, "%d/%d/%d%c", &day, &month, &year, &c)) == 3)
     {
-        printf("Please enter a valid date.\n");
-        return 1;
-    }
-
-    if (year >= 1900 && year <= 9999)
-    {
-        if (month >= 1 && month <= 12)
+        if (year >= 1900 && year <= 9999)
         {
-            if ((day >= 1 && day <= 31) && (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12))
+            if (month >= 1 && month <= 12)
             {
-                return 0;
-            }
-            else if ((day >= 1 && day <= 30) && (month == 4 || month == 6 || month == 9 || month == 11))
-            {
-                return 0;
-            }
-            else if ((day >= 1 && day <= 28) && (month == 2))
-            {
-                return 0;
-            }
-            else if (day == 29 && month == 2 && (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)))
-            {
-                return 0;
-            }
-            else
-            {
-                printf("Please enter a valid date.\n");
-                return 1;
+                if ((day >= 1 && day <= 31) && (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12))
+                    return 0;
+                else if ((day >= 1 && day <= 30) && (month == 4 || month == 6 || month == 9 || month == 11))
+                    return 0;
+                else if ((day >= 1 && day <= 28) && (month == 2))
+                    return 0;
+                else if (day == 29 && month == 2 && (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)))
+                    return 0;
             }
         }
-        else
-        {
-            printf("Please enter a valid date.\n");
-            return 1;
-        }
     }
-    else
-    {
-        printf("Please enter a valid date. \n");
-        return 1;
-    }
+    printf("Please enter a valid date.\n");
+    return 1;
 }
 
 int check_valid_time(char time[8])
 {
     int hour, minute;
     char c;
-    if ((sscanf(time, "%d:%d%c", &hour, &minute, &c)) != 2)
-    {
-        printf("Please enter a valid time.\n");
-        return 1;
-    }
 
-    if (hour >= 0 && hour <= 23)
-    {
-        if (minute >= 0 && minute <= 59)
-        {
-            return 0;
-        }
-        else
-        {
-            printf("Please enter a valid time.\n");
-            return 1;
-        }
-    }
-    else
-    {
-        printf("Please enter a valid time.\n");
-        return 1;
-    }
+    if ((sscanf(time, "%d:%d%c", &hour, &minute, &c)) == 2)
+        if (hour >= 0 && hour <= 23)
+            if (minute >= 0 && minute <= 59)
+                return 0;
+    
+    printf("Please enter a valid time.\n");
+    return 1;
 }
 
 void add_to_list(FILE *fp)
@@ -126,14 +87,7 @@ void add_to_list(FILE *fp)
     }
     else
     {
-        char buf[100];
-        char class[100];
-        char name[100];
-        char date[100];
-        char time[100];
-        char professor[100];
-        char email[100];
-        char command[100];
+        char buf[100],class[100],name[100],date[100],time[100],professor[100],email[100],command[100];
         int exit_code;
 
         printf("\nEnter class: ");
