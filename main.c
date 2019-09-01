@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
         //printf("===========================================================================");
         while ((input != 7))
         {
-            printf("\n1. view\n2. add\n3. delete\n4. edit\n5. new list\n6. revert\n7. exit\n");
+            printf("\n1. view\n2. add\n3. delete\n4. new list\n5. revert\n6. edit info\n7. exit\n");
             scanf("%d", &input);
             getchar();
 
@@ -41,15 +41,15 @@ int main(int argc, char *argv[])
                 break;
 
             case 4:
-                edit_list(fp);
-                break;
-
-            case 5:
                 new_list();
                 break;
 
-            case 6:
+            case 5:
                 revert_changes(fp);
+                break;
+
+            case 6:
+                edit_info();
                 break;
 
             case 7:

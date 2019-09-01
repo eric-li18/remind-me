@@ -4,6 +4,7 @@
 #include <time.h>
 #include <sys/wait.h>
 #define FILE_NAME "reminders.csv"
+#define USER_INFO "user_info.txt"
 
 int main()
 {
@@ -19,7 +20,7 @@ int main()
 
     if ((fp = popen(command, "r")) == NULL)
     {
-        fprintf(stderr, "Cannot open file.\n");
+        fprintf(stderr, "Cannot open reminders list.\n");
         return 1;
     }
 
@@ -40,7 +41,22 @@ int main()
             token = strtok(NULL, ",");
             strcpy(name, token);
 
-            printf("%s for %s is due at %d/%d/%d, %d:%d\n", name, class, time.tm_mday, time.tm_mon + 1, time.tm_year + 1900, time.tm_hour, time.tm_min);
+            FILE *fp2;
+            sprintf(command, "grep 'Phone:' %s", USER_INFO);
+            fp2 = popen(command, "r");
+
+            fgets(buf, 100, fp2);
+            char phone[100];
+            sscanf(buf, "Phone:%s", phone);
+            if (strcmp(phone, "") == 0)
+            {
+                fprintf(stderr, "Please fill in a valid phone number");
+                return 1;
+            }
+            fclose(fp2);
+
+            sprintf(command, "cd twilio_c_sms && sh send_text.sh %s \"%s for %s is due at %d/%d/%d, %d:%d\"", phone, name, class, time.tm_mday, time.tm_mon + 1, time.tm_year + 1900, time.tm_hour, time.tm_min);
+            system(command);
             fclose(fp);
         }
     }

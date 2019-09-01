@@ -5,7 +5,7 @@
 
 void print_list(FILE *fp);
 
-char *trim_spaces(char *str); 
+char *trim_spaces(char *str);
 
 int check_valid_date(char date[11]);
 
@@ -15,9 +15,11 @@ void add_to_list(FILE *fp);
 
 void delete_from_list();
 
-void edit_list(FILE *fp);
-
 void new_list();
+
+void write_info(char subject[100], char subject_edit[100]);
+
+void edit_info();
 
 void revert_changes(FILE *fp);
 
