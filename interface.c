@@ -74,7 +74,7 @@ int check_valid_time(char time[8])
         if (hour >= 0 && hour <= 23)
             if (minute >= 0 && minute <= 59)
                 return 0;
-    
+
     printf("Please enter a valid time.\n");
     return 1;
 }
@@ -87,7 +87,7 @@ void add_to_list(FILE *fp)
     }
     else
     {
-        char buf[100],class[100],name[100],date[100],time[100],professor[100],email[100],command[100];
+        char buf[100], class[100], name[100], date[100], time[100], professor[100], email[100], command[100];
         int exit_code;
 
         printf("\nEnter class: ");
@@ -148,7 +148,6 @@ void add_to_list(FILE *fp)
         while (valid_time != 0)
         {
             printf("Enter time (00:00 24h): ");
-            //might change to 24h time later
             fgets(buf, 100, stdin);
             time[strlen(buf) - 1] = '\0';
             strcpy(time, trim_spaces(buf));
@@ -179,12 +178,10 @@ void delete_from_list()
     if (strcmp(confirm, "y") == 0)
     {
         char cmd[1024];
-        // sprintf(cmd, "grep -v '%s,%s' %s | tee backup.csv | cp backup.csv %s", class_query, name_query, FILE_NAME, FILE_NAME);
+        sprintf(cmd, "grep -v '%s,%s' %s > backup.csv && cp backup.csv %s", class_query, name_query, FILE_NAME, FILE_NAME);
+        system(cmd);
+        // sprintf(cmd, "cp backup.csv %s", FILE_NAME);
         // system(cmd);
-        sprintf(cmd, "grep -v '%s,%s' %s > backup.csv", class_query, name_query, FILE_NAME);
-        system(cmd);
-        sprintf(cmd, "cp backup.csv %s", FILE_NAME);
-        system(cmd);
         printf("The entry was deleted.\n");
     }
     else
@@ -251,10 +248,7 @@ void write_info(char subject[100], char subject_edit[100])
 
     fprintf(fp, "%s%s", subject, subject_edit);
     fclose(fp);
-
-    sprintf(command, "cp %s %s", USER_INFO_TMP, USER_INFO);
-    system(command);
-    sprintf(command, "rm %s", USER_INFO_TMP);
+    sprintf(command, "cp %s %s && rm %s", USER_INFO_TMP, USER_INFO, USER_INFO_TMP);
     system(command);
 }
 

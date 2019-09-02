@@ -54,7 +54,6 @@ int main()
                 return 1;
             }
             fclose(fp2);
-
             sprintf(command, "cd twilio_c_sms && sh send_text.sh %s \"%s for %s is due at %d/%d/%d, %d:%d\"", phone, name, class, time.tm_mday, time.tm_mon + 1, time.tm_year + 1900, time.tm_hour, time.tm_min);
             system(command);
             fclose(fp);

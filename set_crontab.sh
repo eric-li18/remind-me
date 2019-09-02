@@ -1,1 +1,1 @@
-(crontab -l 2>dev/null; echo MAILTO=\"\"; echo "* * * * * cd Desktop/remind-me ** ./monitor") | crontab -
+(crontab -l 2>dev/null; echo MAILTO=\"\"; echo "* * * * * cd Desktop/remind-me && ./monitor") | crontab -
