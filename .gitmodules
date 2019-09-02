@@ -1,3 +1,0 @@
-[submodule "twilio_c_sms"]
-	path = twilio_c_sms
-	url = https://github.com/TwilioDevEd/twilio_c_sms.git
