@@ -1,3 +1,4 @@
+#!/bin/bash
 make > /dev/null
 
 : '
@@ -7,5 +8,6 @@ else
 fi
 '
 ./main edit
+sh ./set_crontab.sh
 
 make clean > /dev/null

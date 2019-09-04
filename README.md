@@ -1,8 +1,14 @@
 # Remind Me
+A project created to solve the problem of missing deadlines by integrating C with shell scripting to efficiently monitor due dates and automate submissions.
 
-Demo: 
+![Demo](remindme_demo.gif)
 
-![](remindme_demo.mp4.gif)
+_The demo reflects basic functionality, subject to change_
+
+## Running the program
+Open a bash terminal in the directory and run the command below to start the driver to add entries to monitor.
+
+        $ ./run.sh
 
 
 <!-- ## Built From:
@@ -17,7 +23,7 @@ Demo:
 ## Required Installations
 ### Shell Script
 
-The shell script requires a *nix system with a bash terminal. If not, instructions can be found [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for WSL, or [here](https://cmder.net/) for a console emulator. At the time of writing, the current Ubuntu version is 18.04 LTS
+The shell script requires a *nix system with a bash terminal. If not, instructions can be found [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for WSL, or [here](https://cmder.net/) for a console emulator. At the time of writing, the current Ubuntu version is 18.04 LTS.
 
 
 ### Python Script
