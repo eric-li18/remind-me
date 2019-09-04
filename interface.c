@@ -92,9 +92,9 @@ void add_to_list(FILE *fp)
 
         printf("\nEnter class: ");
         fgets(buf, 100, stdin);
-        class[strlen(buf) - 1] = '\0';
+        buf[strlen(buf) - 1] = '\0';
         strcpy(class, trim_spaces(buf));
-        sprintf(command, "grep -q '%s' %s", class, COURSE_INFO);
+        sprintf(command, "grep -q \"%s\" %s", class, COURSE_INFO);
         exit_code = system(command);
         if (WEXITSTATUS(exit_code) != 0)
         {
@@ -109,12 +109,12 @@ void add_to_list(FILE *fp)
 
             printf("Enter the professor's name: ");
             fgets(buf, 100, stdin);
-            class[strlen(buf) - 1] = '\0';
+            buf[strlen(buf) - 1] = '\0';
             strcpy(professor, trim_spaces(buf));
 
             printf("Enter the professor's email: ");
             fgets(buf, 100, stdin);
-            class[strlen(buf) - 1] = '\0';
+            buf[strlen(buf) - 1] = '\0';
             strcpy(email, trim_spaces(buf));
             fprintf(fp2, "\n%s,%s,%s", class, professor, email);
             printf("The course has now been registered.\n");
@@ -123,10 +123,10 @@ void add_to_list(FILE *fp)
 
         printf("Enter assignment name: ");
         fgets(buf, 100, stdin);
-        class[strlen(buf) - 1] = '\0';
+        buf[strlen(buf) - 1] = '\0';
         strcpy(name, trim_spaces(buf));
 
-        sprintf(command, "grep -q '%s,%s' %s", class, name, FILE_NAME);
+        sprintf(command, "grep -q \"%s,%s\" %s", class, name, FILE_NAME);
         exit_code = system(command);
         if (WEXITSTATUS(exit_code) == 0)
         {
@@ -139,7 +139,7 @@ void add_to_list(FILE *fp)
         {
             printf("Enter due date (dd/mm/yyyy): ");
             fgets(buf, 100, stdin);
-            date[strlen(buf) - 1] = '\0';
+            buf[strlen(buf) - 1] = '\0';
             strcpy(date, trim_spaces(buf));
             valid_date = check_valid_date(date);
         }
@@ -149,7 +149,7 @@ void add_to_list(FILE *fp)
         {
             printf("Enter time (00:00 24h): ");
             fgets(buf, 100, stdin);
-            time[strlen(buf) - 1] = '\0';
+            buf[strlen(buf) - 1] = '\0';
             strcpy(time, trim_spaces(buf));
             valid_time = check_valid_time(time);
         }

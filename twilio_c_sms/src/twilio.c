@@ -9,7 +9,7 @@
 */
 size_t _twilio_null_write(char *ptr, size_t size, size_t nmemb, void *userdata)
 {
-    return size * nmemb;
+        return size * nmemb;
 }
 
 /*
@@ -39,11 +39,13 @@ int twilio_send_message(char *account_sid,
 
         // See: https://www.twilio.com/docs/api/rest/sending-messages for
         // information on Twilio body size limits.
-        if (strlen(message) > 1600) {
-            fprintf(stderr, "SMS send failed.\n"
-                    "Message body must be less than 1601 characters.\n"
-                    "The message had %zu characters.\n", strlen(message));
-            return -1;
+        if (strlen(message) > 1600)
+        {
+                fprintf(stderr, "SMS send failed.\n"
+                                "Message body must be less than 1601 characters.\n"
+                                "The message had %zu characters.\n",
+                        strlen(message));
+                return -1;
         }
 
         CURL *curl;
@@ -60,30 +62,32 @@ int twilio_send_message(char *account_sid,
                  "/Messages");
 
         char parameters[MAX_TWILIO_MESSAGE_SIZE];
-        if (!picture_url) {
-            snprintf(parameters,
-                     sizeof(parameters),
-                     "%s%s%s%s%s%s",
-                     "To=",
-                     to_number,
-                     "&From=",
-                     from_number,
-                     "&Body=",
-                     message);
-        } else {
-            snprintf(parameters,
-                     sizeof(parameters),
-                     "%s%s%s%s%s%s%s%s",
-                     "To=",
-                     to_number,
-                     "&From=",
-                     from_number,
-                     "&Body=",
-                     message,
-                     "&MediaUrl=",
-                     picture_url);
+        if (!picture_url)
+        {
+                snprintf(parameters,
+                         sizeof(parameters),
+                         "%s%s%s%s%s%s",
+                         "To=",
+                         to_number,
+                         "&From=",
+                         from_number,
+                         "&Body=",
+                         message);
         }
-
+        else
+        {
+                snprintf(parameters,
+                         sizeof(parameters),
+                         "%s%s%s%s%s%s%s%s",
+                         "To=",
+                         to_number,
+                         "&From=",
+                         from_number,
+                         "&Body=",
+                         message,
+                         "&MediaUrl=",
+                         picture_url);
+        }
 
         curl_easy_setopt(curl, CURLOPT_POST, 1);
         curl_easy_setopt(curl, CURLOPT_URL, url);
@@ -91,9 +95,10 @@ int twilio_send_message(char *account_sid,
         curl_easy_setopt(curl, CURLOPT_USERNAME, account_sid);
         curl_easy_setopt(curl, CURLOPT_PASSWORD, auth_token);
 
-        if (!verbose) {
-                curl_easy_setopt(curl, 
-                                 CURLOPT_WRITEFUNCTION, 
+        if (!verbose)
+        {
+                curl_easy_setopt(curl,
+                                 CURLOPT_WRITEFUNCTION,
                                  _twilio_null_write);
         }
 
@@ -101,28 +106,54 @@ int twilio_send_message(char *account_sid,
         curl_easy_cleanup(curl);
 
         long http_code = 0;
-        curl_easy_getinfo (curl, CURLINFO_RESPONSE_CODE, &http_code);
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
 
-        if (res != CURLE_OK) {
-                if (verbose) {
+        if (res != CURLE_OK)
+        {
+                if (verbose)
+                {
                         fprintf(stderr,
                                 "SMS send failed: %s.\n",
                                 curl_easy_strerror(res));
                 }
                 return -1;
-        } else if (http_code != 200 && http_code != 201) {
-                if (verbose) {
+        }
+        else if (http_code != 200 && http_code != 201)
+        {
+                if (verbose)
+                {
                         fprintf(stderr,
                                 "SMS send failed, HTTP Status Code: %ld.\n",
                                 http_code);
                 }
                 return -1;
-        } else {
-                if (verbose) {
+        }
+        else
+        {
+                if (verbose)
+                {
                         fprintf(stderr,
                                 "SMS sent successfully!\n");
                 }
                 return 0;
         }
-
 }
+
+// int twilio_recieve_message(char *account_sid, char *auth_token)
+// {
+//         CURL *curl;
+//         curl_global_init(CURL_GLOBAL_ALL);
+//         curl = curl_easy_init();
+
+//         char url[MAX_TWILIO_MESSAGE_SIZE];
+//         snprintf(url,
+//                  sizeof(url),
+//                  "%s%s%s",
+//                  "https://api.twilio.com/2010-04-01/Accounts/",
+//                  account_sid,
+//                  "/Messages");
+
+//         curl_easy_setopt(curl, CURLOPT_URL, url);
+
+//         curl_easy_cleanup(curl);
+// }

@@ -8,7 +8,7 @@
 
 int main()
 {
-    char command[100];
+    char command[300];
     int exit_code;
     time_t t = time(NULL);
     struct tm time = *localtime(&t);
@@ -50,12 +50,15 @@ int main()
             sscanf(buf, "Phone:%s", phone);
             if (strcmp(phone, "") == 0)
             {
-                fprintf(stderr, "Please fill in a valid phone number");
+                fprintf(stderr, "Please fill in a valid phone number.");
                 return 1;
             }
             fclose(fp2);
-            sprintf(command, "cd twilio_c_sms && sh send_text.sh %s \"%s for %s is due at %d/%d/%d, %d:%d\"", phone, name, class, time.tm_mday, time.tm_mon + 1, time.tm_year + 1900, time.tm_hour, time.tm_min);
+            fprintf(stderr, "I am here1");
+            sprintf(command, "cd twilio_c_sms && sh send_text.sh %s \"%s for %s is due at %d/%d/%d, %d:%d. Reply EMAIL to submit via email. Reply SUBMIT to submit via quercus. Reply IGNORE to ignore.\"", phone, name, class, time.tm_mday, time.tm_mon + 1, time.tm_year + 1900, time.tm_hour, time.tm_min);
+            fprintf(stderr, "I am here2");
             system(command);
+
             fclose(fp);
         }
     }
