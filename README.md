@@ -2,7 +2,7 @@
 
 Demo: 
 
-https://giphy.com/gifs/l57ZQFqy7gIPJMR4Qt/html5
+<iframe src="https://giphy.com/embed/l57ZQFqy7gIPJMR4Qt" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/l57ZQFqy7gIPJMR4Qt">via GIPHY</a></p>
 
 
 <!-- ## Built From:
