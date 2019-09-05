@@ -1,7 +1,7 @@
 # Remind Me
 A project created to solve the problem of missing deadlines by integrating C with shell scripting to efficiently monitor due dates and automate submissions.
 
-![Demo](remindme_demo.mp4.gif)
+![Demo](remindme_demo.gif)
 
 _The demo reflects basic functionality, subject to change_
 
