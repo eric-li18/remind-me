@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include "submit.h"
 #include "interface.h"
 
 int main(int argc, char *argv[])

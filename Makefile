@@ -4,12 +4,11 @@ all : main
 clean :
 		rm -f *.o main
 
-main : main.o interface.o submit.o
+main : main.o interface.o 
 		gcc $^ -o $@
 
-main.o : main.c interface.h submit.h
+main.o : main.c interface.h 
 interface.o : interface.c interface.h
-submit.o : submit.c submit.h
 
 %.o : %.c 
 	gcc -c $<
