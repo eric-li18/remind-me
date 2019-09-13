@@ -5,15 +5,15 @@
 #include <ctype.h>
 #include "interface.h"
 
-#define FILE_NAME "reminders.csv"
-#define COURSE_INFO "course_info.csv"
-#define USER_INFO "user_info.txt"
-#define USER_INFO_TMP "user_info_tmp.txt"
+#define FILE_NAME "data/reminders.csv"
+#define COURSE_INFO "data/course_info.csv"
+#define USER_INFO "data/user_info.txt"
+#define USER_INFO_TMP "data/user_info_tmp.txt"
 
-void print_list(FILE *fp, char name[])
+void print_list()
 {
     char print_command[100];
-    sprintf(print_command, "(head -n 2 %s && tail -n+3 %s | sort -k1) | column -s, -t  | cat", name, name);
+    sprintf(print_command, "(head -n 2 %s && tail -n+3 %s | sort -k1) | column -s, -t  | cat", FILE_NAME, FILE_NAME);
     printf("\n===========================================\n");
     system(print_command);
     printf("===========================================\n");
@@ -237,7 +237,7 @@ void new_list()
 void write_info(char subject[100], char subject_edit[100])
 {
     char command[100];
-    sprintf(command, "grep -v '%s' %s > user_info_tmp.txt", subject, USER_INFO);
+    sprintf(command, "grep -v '%s' %s > data/user_info_tmp.txt", subject, USER_INFO);
     system(command);
     FILE *fp;
     if ((fp = fopen(USER_INFO_TMP, "a")) == NULL)

@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
             switch (input)
             {
             case 1:
-                print_list(fp, "reminders.csv");
+                print_list();
                 break;
 
             case 2:
