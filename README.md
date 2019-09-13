@@ -1,4 +1,4 @@
-# Remind Me
+# Remind Me (WIP)
 
 A project created to solve the problem of missing deadlines by integrating C with shell scripting to efficiently monitor due dates and automate submissions.
 
@@ -24,6 +24,10 @@ Open a bash terminal in the directory and run the command below to start the dri
 ## Workflow
 
 <img src="./other/remind-me workflow .png">
+
+## Data and Signal Flow
+
+<img src="./other/Text Handler.png"> 
 
 ## Required Installations
 
