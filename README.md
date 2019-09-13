@@ -17,9 +17,10 @@ Open a bash terminal in the directory and run the command below to start the dri
 <img src="https://www.seleniumhq.org/images/big-logo.png" width="150" height="150"><img src="https://www.python.org/static/opengraph-icon-200x200.png" width="150" height="150"><img src="https://www.macworld.co.uk/cmsdata/features/3608274/Terminalicon2_thumb800.png" width="250" height="150">
 ![Python](https://www.python.org/static/opengraph-icon-200x200.png  "Python") -->
 
-## Bug List
+## To Do List
 
-1. set_crontab.sh does not work with Windows currently
+1. Implement text handler
+2. Figure out communication between local and VM
 
 ## Workflow
 
@@ -27,7 +28,11 @@ Open a bash terminal in the directory and run the command below to start the dri
 
 ## Data and Signal Flow
 
-<img src="./other/Text Handler.png"> 
+<img src="./other/Text Handler.png">
+
+## Bug List
+
+1. set_crontab.sh does not work with Windows currently
 
 ## Required Installations
 
