@@ -1,6 +1,8 @@
 # Remind Me (WIP)
 
 A project created to solve the problem of missing deadlines by integrating C with shell scripting to efficiently monitor due dates and automate submissions.
+## Re-work In Progress
+Changing language of choice to JS for better library support and ease of deployment for future cloud integration
 
 ![Demo](remindme_demo.gif)
 
