@@ -3,6 +3,10 @@
 A project created to solve the problem of missing deadlines by integrating C with shell scripting to efficiently monitor due dates and automate submissions.
 ## Re-work In Progress
 Changing language of choice to JS for better library support and ease of deployment for future cloud integration
+- [ ] run script with AWS Lambda function polling for new assignments
+- [ ] write script to text and notify 
+- [ ] script to poll quercus for assignments
+- [ ] redesign app workflow
 
 ![Demo](remindme_demo.gif)
 
@@ -13,11 +17,6 @@ _The demo reflects basic functionality, subject to change_
 Open a bash terminal in the directory and run the command below to start the driver to add entries to monitor.
 
         $ ./run.sh
-
-<!-- ## Built From:
-![Selenium](https://www.seleniumhq.org/images/big-logo.png "Selenium")
-<img src="https://www.seleniumhq.org/images/big-logo.png" width="150" height="150"><img src="https://www.python.org/static/opengraph-icon-200x200.png" width="150" height="150"><img src="https://www.macworld.co.uk/cmsdata/features/3608274/Terminalicon2_thumb800.png" width="250" height="150">
-![Python](https://www.python.org/static/opengraph-icon-200x200.png  "Python") -->
 
 ## To Do List
 
