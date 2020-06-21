@@ -2,6 +2,9 @@
     "name": "remind-me",
     "version": "0.1.0",
     "main": "index.js",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
     "scripts": {
         "dev": "bottender dev",
         "lint": "eslint . ",
