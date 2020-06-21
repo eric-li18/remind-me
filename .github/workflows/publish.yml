@@ -9,7 +9,7 @@ on:
       - master 
 
 jobs:
-  build and gpr-publish:
+  build-publish:
     runs-on: ubuntu-latest
     strategy:
       matrix:
