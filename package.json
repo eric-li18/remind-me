@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "main": "index.js",
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
+        "registry": "https://npm.pkg.github.com/@eric-li18"
     },
     "scripts": {
         "dev": "bottender dev",
