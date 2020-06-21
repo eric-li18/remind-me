@@ -26,7 +26,7 @@ Open a bash terminal in the directory and run the command below to start the dri
 
 ## Workflow
 
-<img src="remind-me workflow .png">
+<img src="workflow.png">
 
 ## Data and Signal Flow
 
