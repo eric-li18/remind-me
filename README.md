@@ -1,5 +1,6 @@
 # Remind Me (WIP)
-![Node.js Package](https://github.com/eric-li18/remind-me/workflows/Node.js%20Package/badge.svg)
+![publish](https://github.com/eric-li18/remind-me/workflows/Node.js%20Package/badge.svg)
+![build/test](https://github.com/eric-li18/remind-me/workflows/Build%20and%20Test/badge.svg)
 
 A project created to solve the problem of missing deadlines by integrating C with shell scripting to efficiently monitor due dates and automate submissions.
 ## Re-work In Progress
