@@ -1,4 +1,5 @@
 # Remind Me (WIP)
+![Build Status](https://github.com/eric-li18/remind-me/workflows/publish.yml/badge.svg)
 
 A project created to solve the problem of missing deadlines by integrating C with shell scripting to efficiently monitor due dates and automate submissions.
 ## Re-work In Progress
