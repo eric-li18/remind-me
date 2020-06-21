@@ -1,55 +1,62 @@
-# Remind Me (WIP)
+This project was bootstrapped with
+[Bottender](https://github.com/Yoctol/bottender) init script.
 
-A project created to solve the problem of missing deadlines by integrating C with shell scripting to efficiently monitor due dates and automate submissions.
-## Re-work In Progress
-Changing language of choice to JS for better library support and ease of deployment for future cloud integration
-- [ ] run script with AWS Lambda function polling for new assignments
-- [ ] write script to text and notify 
-- [ ] script to poll quercus for assignments
-- [ ] redesign app workflow
-- [ ] add chatbot to reply to
+## Sending Feedback
 
-![Demo](remindme_demo.gif)
+Always feel free to open an issue to
+[Bottender](https://github.com/Yoctol/bottender/issues) repository.
 
-_The demo reflects basic functionality, subject to change_
+## Configuration
 
-## Running the program
+### The `bottender.config.js` File
 
-Open a bash terminal in the directory and run the command below to start the driver to add entries to monitor.
+Bottender configuration file. You can use this file to provide settings for the session store and channels.
 
-        $ ./run.sh
+### The `.env` File
 
-## To Do List
+Bottender utilizes the [dotenv](https://www.npmjs.com/package/dotenv) package to load your environment variables when developing your app.
 
-1. Implement text handler
-2. Figure out communication between local and VM
+To make the bot work, you must put required environment variables into your `.env` file.
 
-## Workflow
+## Available Scripts
 
-<img src="./other/remind-me workflow .png">
+In the project directory, you can run:
 
-## Data and Signal Flow
+### `npm run dev`
 
-<img src="./other/Text Handler.png">
+Runs the app in development mode.<br>
+The bot will automatically reload if you make changes to the code.<br>
+By default, server runs on [http://localhost:5000](http://localhost:5000) and ngrok runs on [http://localhost:4040](http://localhost:4040).
 
-## Bug List
+To run in [Console Mode](https://bottender.js.org/docs/en/the-basics-console-mode), provide the `--console` option:
 
-1. set_crontab.sh does not work with Windows currently
+```sh
+npm run dev -- --console
+yarn dev --console
+```
 
-## Required Installations
+### `npm start`
 
-### Shell Script
+Runs the app in production mode.<br>
+By default, server runs on [http://localhost:5000](http://localhost:5000).
 
-The shell script requires a \*nix system with a bash terminal. If not, instructions can be found [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for WSL, or [here](https://cmder.net/) for a console emulator. At the time of writing, the current Ubuntu version is 18.04 LTS.
+To run in [Console Mode](https://bottender.js.org/docs/en/the-basics-console-mode), provide the `--console` option:
 
-### Python Script
+```sh
+npm start -- --console
+yarn start --console
+```
 
-This is assuming you have Python installed _(> 2.6)_, if not, the Anaconda distribution is recommended (Selenium and many other packages come with it), and can be found [here](https://www.anaconda.com/distribution/).
+### `npm run lint`
 
-To work with Selenium:
+Runs the linter rules using [Eslint](https://eslint.org/).
 
-1.  Download Selenium by python, via the command:
+### `npm test`
 
-        pip install selenium
+Runs the test cases using [Jest](https://jestjs.io/).
 
-2.  Download the files along with the "`chromedriver.exe`" file in the same directory
+## Learn More
+
+To learn Bottender, check out the [Bottender documentation](https://bottender.js.org/docs/en/getting-started).
+
+For more examples, see [Bottender examples](https://github.com/Yoctol/bottender/tree/master/examples).
