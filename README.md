@@ -26,11 +26,11 @@ Open a bash terminal in the directory and run the command below to start the dri
 
 ## Workflow
 
-<img src="./other/remind-me workflow .png">
+<img src="remind-me workflow .png">
 
 ## Data and Signal Flow
 
-<img src="./other/Text Handler.png">
+<img src="Text Handler.png">
 
 ## Bug List
 
