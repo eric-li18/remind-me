@@ -1,12 +1,12 @@
 name: Node.js Package
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
 jobs:
-  build-publish:
+  publish:
     runs-on: ubuntu-latest
     strategy:
       matrix:
