@@ -2,8 +2,8 @@ name: Publish npm Package
 
 on:
   release:
-    branches:
-      - master
+    types:
+      - released
 
 jobs:
   prepublish:
