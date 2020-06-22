@@ -1,7 +1,7 @@
 name: Publish npm Package
 
 on:
-  pull_request:
+  release:
     branches:
       - master
 
