@@ -11,6 +11,7 @@ Changing language of choice to JS for better library support and ease of deploym
 - [ ] redesign app workflow
 - [ ] add chatbot to reply to
 
+<!--- 
 ![Demo](remindme_demo.gif)
 
 _The demo reflects basic functionality, subject to change_
@@ -55,3 +56,4 @@ To work with Selenium:
         pip install selenium
 
 2.  Download the files along with the "`chromedriver.exe`" file in the same directory
+-->
