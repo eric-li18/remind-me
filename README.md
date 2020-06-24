@@ -10,6 +10,7 @@ Changing language of choice to JS for better library support and ease of deploym
 - [ ] script to poll quercus for assignments
 - [ ] redesign app workflow
 - [ ] add chatbot to reply to
+- [x] add basic CI/CD
 
 <!--- 
 ![Demo](remindme_demo.gif)
