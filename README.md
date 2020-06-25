@@ -1,4 +1,4 @@
-# Remind Me (WIP)
+# remind-me
 ![build/test](https://github.com/eric-li18/remind-me/workflows/Build%20and%20Test/badge.svg)
 ![publish](https://github.com/eric-li18/remind-me/workflows/Publish%20npm%20Package/badge.svg)
 
