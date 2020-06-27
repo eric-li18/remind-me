@@ -12,6 +12,13 @@ Changing language of choice to JS for better library support and ease of deploym
 - [ ] add chatbot to reply to
 - [x] add basic CI/CD
 
+## Debugging with bottender
+```
+DEBUG=bottender:action npm start -- --console
+```
+## App Flow
+- Message to find out about upcoming assignments and set them as done
+- have a default directory to put files and have them automatically upload to Quercus
 <!--- 
 ![Demo](remindme_demo.gif)
 
