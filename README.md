@@ -3,6 +3,7 @@
 ![publish](https://github.com/eric-li18/remind-me/workflows/Publish%20npm%20Package/badge.svg)
 
 A project created to solve the problem of missing deadlines by integrating C with shell scripting to efficiently monitor due dates and automate submissions.
+CI/CD done by Github Actions
 ## Re-work In Progress
 Changing language of choice to JS for better library support and ease of deployment for future cloud integration
 - [ ] run script with AWS Lambda function polling for new assignments
