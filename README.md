@@ -19,6 +19,7 @@ Changing language of choice to JS for better library support and ease of deploym
 DEBUG=bottender:action npm start -- --console
 ```
 ## App Flow
+- Either add assignments via a message or through polling Quercus
 - Message to find out about upcoming assignments and set them as done
 - have a default directory to put files and have them automatically upload to Quercus
 <!--- 
