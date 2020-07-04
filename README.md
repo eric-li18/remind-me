@@ -7,8 +7,8 @@ A project created to solve the problem of missing deadlines by using a chatbot t
 CI/CD done by Github Actions
 ## Re-work In Progress
 Changing language of choice to JS for better library support and ease of deployment for future cloud integration
-- [ ] run script with AWS Lambda function polling for new assignments
-- [ ] look into [serverless](https://github.com/serverless/serverless) for deployment to AWS Lambda
+<!-- [ ] run script with AWS Lambda function polling for new assignments
+- [ ] look into [serverless](https://github.com/serverless/serverless) for deployment to AWS Lambda-->
 - [ ] write script to text and notify 
 - [ ] script to poll quercus for assignments
 - [ ] redesign app workflow
