@@ -23,6 +23,13 @@ DEBUG=bottender:action npm start -- --console
 - Either add assignments via a message or through polling Quercus
 - Message to find out about upcoming assignments and set them as done
 - have a default directory to put files and have them automatically upload to Quercus
+
+## Docs
+[Installation](https://chatbotsjournal.com/how-to-build-facebook-messenger-bot-using-node-js-and-bottender-20d87c9e2c77)
+
+[Messenger Bottender Docs](https://bottender.js.org/docs/en/api-messenger-context)
+
+[Bottender Docs](https://bottender.js.org/docs/en/getting-started)
 <!--- 
 ![Demo](remindme_demo.gif)
 
