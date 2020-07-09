@@ -2,10 +2,13 @@
 ![build/test](https://github.com/eric-li18/remind-me/workflows/Build%20and%20Test/badge.svg)
 ![publish](https://github.com/eric-li18/remind-me/workflows/Publish%20npm%20Package/badge.svg)
 
-A project created to solve the problem of missing deadlines by integrating C with shell scripting to efficiently monitor due dates and automate submissions.
+A project created to solve the problem of missing deadlines by using a chatbot to intelligently manage due dates and automate submissions.
+
+CI/CD done by Github Actions
 ## Re-work In Progress
 Changing language of choice to JS for better library support and ease of deployment for future cloud integration
-- [ ] run script with AWS Lambda function polling for new assignments
+<!-- [ ] run script with AWS Lambda function polling for new assignments
+- [ ] look into [serverless](https://github.com/serverless/serverless) for deployment to AWS Lambda-->
 - [ ] write script to text and notify 
 - [ ] script to poll quercus for assignments
 - [ ] redesign app workflow
@@ -17,8 +20,16 @@ Changing language of choice to JS for better library support and ease of deploym
 DEBUG=bottender:action npm start -- --console
 ```
 ## App Flow
+- Either add assignments via a message or through polling Quercus
 - Message to find out about upcoming assignments and set them as done
 - have a default directory to put files and have them automatically upload to Quercus
+
+## Docs
+[Installation](https://chatbotsjournal.com/how-to-build-facebook-messenger-bot-using-node-js-and-bottender-20d87c9e2c77)
+
+[Messenger Bottender Docs](https://bottender.js.org/docs/en/api-messenger-context)
+
+[Bottender Docs](https://bottender.js.org/docs/en/getting-started)
 <!--- 
 ![Demo](remindme_demo.gif)
 
